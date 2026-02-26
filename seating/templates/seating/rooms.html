@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rooms - Smart Exam Seating</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background:#f5f6ec;">
+
+<nav class="navbar navbar-light bg-light px-4">
+  <span class="navbar-brand mb-0 h5">Smart Exam Seating</span>
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">Logout</button>
+  </form>
+</nav>
+
+<div class="container mt-4">
+
+  <h2 class="mb-4">Rooms</h2>
+
+  <div class="row">
+    <!-- Add Room Card -->
+    <div class="col-md-5">
+      <div class="card p-4 shadow-sm rounded-4 mb-4">
+        <h5 class="mb-3">Add Room</h5>
+
+        <form method="post">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <select name="block" class="form-select rounded-pill" required>
+              <option value="">Select Block</option>
+              {% for b in blocks %}
+                <option value="{{ b.id }}">{{ b.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <input type="text" name="room_number" class="form-control rounded-pill"
+                   placeholder="Room No (e.g. 101)" required>
+          </div>
+
+          <div class="mb-3">
+            <input type="number" name="rows" class="form-control rounded-pill"
+                   placeholder="Rows" required>
+          </div>
+
+          <div class="mb-3">
+            <input type="number" name="columns" class="form-control rounded-pill"
+                   placeholder="Columns" required>
+          </div>
+
+          <button type="submit" name="add"
+                  class="btn btn-success w-100 rounded-pill">
+            ➕ Add Room
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Existing Rooms Card -->
+    <div class="col-md-7">
+      <div class="card p-4 shadow-sm rounded-4">
+        <h5 class="mb-3">Existing Rooms</h5>
+
+        <form method="post">
+          {% csrf_token %}
+
+          {% for r in rooms %}
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div>
+                <input type="checkbox" name="rooms" value="{{ r.id }}"
+                       class="form-check-input me-2">
+                <strong>{{ r.block.name }}-{{ r.room_number }}</strong>
+                <span class="text-muted">
+                  ({{ r.rows }} × {{ r.columns }} = {{ r.capacity }})
+                </span>
+              </div>
+              <button type="submit" name="delete" value="{{ r.id }}"
+                      class="btn btn-sm btn-outline-danger rounded-pill">
+                Delete
+              </button>
+            </div>
+          {% empty %}
+            <p class="text-muted">No rooms added yet.</p>
+          {% endfor %}
+
+          <hr>
+
+          <button type="submit" name="next"
+                  class="btn btn-primary w-100 rounded-pill mt-3">
+            Next → Exam Slot
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

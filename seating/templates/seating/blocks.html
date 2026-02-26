@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blocks - Smart Exam Seating</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background:#f5f6ec;">
+
+<nav class="navbar navbar-light bg-light px-4">
+  <span class="navbar-brand mb-0 h5">Smart Exam Seating</span>
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">Logout</button>
+  </form>
+</nav>
+
+<div class="container mt-4">
+
+  <h2 class="mb-4">Blocks</h2>
+
+  <div class="row">
+    <!-- Add Block Card -->
+    <div class="col-md-5">
+      <div class="card p-4 shadow-sm rounded-4 mb-4">
+        <h5 class="mb-3">Add Block</h5>
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="text" name="block_name" class="form-control rounded-pill"
+                   placeholder="Block name (e.g., KC)" required>
+          </div>
+          <button type="submit" name="add" class="btn btn-success w-100 rounded-pill">
+            ➕ Add Block
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Existing Blocks Card -->
+    <div class="col-md-7">
+      <div class="card p-4 shadow-sm rounded-4">
+        <h5 class="mb-3">Existing Blocks</h5>
+
+        <form method="post">
+          {% csrf_token %}
+
+          {% for b in blocks %}
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div>
+                <input type="checkbox" name="blocks" value="{{ b.id }}" class="form-check-input me-2">
+                <strong>{{ b.name }}</strong>
+              </div>
+              <button type="submit" name="delete" value="{{ b.id }}"
+                      class="btn btn-sm btn-outline-danger rounded-pill">
+                Delete
+              </button>
+            </div>
+          {% empty %}
+            <p class="text-muted">No blocks added yet.</p>
+          {% endfor %}
+
+          <hr>
+
+          <button type="submit" name="next"
+                  class="btn btn-primary w-100 rounded-pill mt-3">
+            Next → Rooms
+          </button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

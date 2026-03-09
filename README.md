@@ -1,22 +1,22 @@
-# Smart Exam Seating System 🎓
+# Smart Exam Seating System 
 
-## 📌 Project Overview
+##  Project Overview
 Smart Exam Seating System is a Django-based web application designed to automate the process of generating exam seating arrangements. It reduces manual effort, prevents allocation errors, and efficiently distributes students across available rooms.
 
-## 🚀 Features
+## Features
 - Upload student data using Excel files
 - Automatic seat allocation
 - Room-wise seating arrangement generation
 - Admin panel for management
 - Clean and simple UI
 
-## 🛠️ Tech Stack
+## Tech Stack
 - Python
 - Django
 - SQLite
 - HTML, CSS, Bootstrap
 
-## 📂 Project Structure
+## Project Structure
 Smart-Seating-System
 │
 ├── manage.py
@@ -26,7 +26,7 @@ Smart-Seating-System
 └── README.md
 
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 1. Clone the repository:
 git clone https://github.com/AJeevitha-11/Smart-Seating-System.git
@@ -49,7 +49,7 @@ pip install -r requirements.txt
 python manage.py runserver
 
 
-## 🎯 Future Enhancements
+## Future Enhancements
 - Add student login panel
 - Export seating arrangement as PDF
 - Deployment on cloud

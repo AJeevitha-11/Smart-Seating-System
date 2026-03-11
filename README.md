@@ -35,21 +35,28 @@ Smart Seating System
 Follow the steps below to run this project on your local machine.
 **1.Clone the repository**
      git clone https://github.com/AJeevitha-11/Smart-Seating-System.git
+     
 **2.Navigate to the project folder**
     cd Smart-Seating-System
+    
 **3.Create a virtual environment**
     python -m venv venv
+
 **4.Activate the virtual environment**
     For Windows
       venv\Scripts\activate
     For Mac/Linux
       source venv/bin/activate
+
 **5.Install the  required dependencies**
     pip install -r requirements.txt
+
 **6.Run databse migrations**
     python manage.py migrate
+
 **7.Start the development Server**
     python manage.py runserver
+
 **8.Open the application in your browser**
     http://127.0.0.1:8000/
 
